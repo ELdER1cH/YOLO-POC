@@ -1,0 +1,12 @@
+services:
+  yolov8:
+    build: .
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    # Ressourcen-Limits (CPU-only)
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 2G
