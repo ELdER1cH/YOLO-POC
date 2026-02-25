@@ -7,7 +7,7 @@ from PIL import Image
 app = FastAPI(title="YOLOv8 Inference API")
 
 # Modell einmalig laden (beim Start)
-model = YOLO("yolov11n.pt")  # nano-Modell, klein & schnell auf CPU
+model = YOLO("yolo11n.pt")
 
 
 @app.get("/health")

@@ -7,14 +7,16 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+# Setzen Sie das Config-Verzeichnis auf einen beschreibbaren Pfad
+ENV YOLO_CONFIG_DIR=/tmp/Ultralytics
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Modell vorab herunterladen (baked ins Image)
-RUN python -c "from ultralytics import YOLO; YOLO('yolov11n.pt')"
+# Korrekter Modellname: yolo11n.pt (ohne "v")
+RUN python -c "from ultralytics import YOLO; YOLO('yolo11n.pt')"
 
 COPY app.py .
-
 EXPOSE 8000
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
