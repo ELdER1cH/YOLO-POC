@@ -17,10 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # This step creates a lowercase version of the image name
       - name: Prepare Image Name
         run: |
-          echo "IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/yolo-poc" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+          # Create the full path, convert to lowercase, and export to GITHUB_ENV
+          IMAGE_PATH="ghcr.io/${{ github.repository_owner }}/yolo-poc"
+          echo "IMAGE_NAME=$(echo $IMAGE_PATH | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
