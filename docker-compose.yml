@@ -1,6 +1,7 @@
 services:
-  yolov8:
+  yolov11:
     build: .
+    container_name: yolo11-api
     volumes:
       - .:/app
     ports:
